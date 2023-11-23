@@ -13,7 +13,7 @@ export async function hello(
 }
 
 async function queryUser() {
-  const endpoint = `https://${process.env.azure_db_name}.mongo.cosmos.azure.com:443/`;
+  const endpoint = `https://${process.env.azure_uri}:443/`;
   console.log("endpoint:", endpoint);
   const key = process.env.azure_db_key;
   const client = new CosmosClient({
@@ -22,7 +22,7 @@ async function queryUser() {
   });
 
   const query2 = "select * from c";
-  const dbId = process.env.db_name;
+  const dbId = process.env.azure_db_name;
   const containerId = "tb_user2";
   const { resources } = await client
     .database(dbId)
